@@ -84,5 +84,27 @@ function updateInfo()
 	timeInfo.innerText = elapsedTime.toFixed("2");
 }
 
+canvas.addEventListener('click', (e) =>{
+	if (isRunning)
+		return;
+
+	const rect = canvas.getBoundingClientRect();
+	const x = e.clientX - rect.left;
+	const y = e.clientY - rect.top;
+
+	const col = Math.floor(x / cellSize);
+	const row = Math.floor(y / cellSize);
+
+	if (row >= 0 && row < rows && col >=0 && col < cols)
+	{
+		grid[row][col] = (grid[row][col] == 1) ? 0 : 1;
+		drawGrid();
+	}
+});
+
+canvas.addEventListener('contextmenu', (e) =>{
+	e.preventDefault();
+});
+
 initGrid();
 drawGrid();
