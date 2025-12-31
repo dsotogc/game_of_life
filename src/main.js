@@ -166,6 +166,84 @@ function nextGen()
 	drawGrid();
 }
 
+startButton.addEventListener('click', () =>{
+	if (isRunning)
+		return;
+
+	isRunning = true;
+	let intervalo = 1000 / parseInt(fps.value);
+	console.log(intervalo);
+	let startTime = Date.now() - (elapsedTime * 1000);
+
+	intervalId = setInterval(() => {
+		nextGen();
+		elapsedTime = (Date.now() - startTime) / 1000;
+		updateInfo();
+	}, intervalo);
+
+	startButton.disabled = true;
+	apply.disabled = true;
+});
+
+stopButton.addEventListener('click', () =>{
+	if (!isRunning)
+		return;
+
+	isRunning = false;
+	clearInterval(intervalId);
+	intervalId = null;
+
+	startButton.disabled = false;
+	apply.disabled = false;
+});
+
+clearButton.addEventListener('click', () =>{
+	if (isRunning)
+	{
+		isRunning = false;
+		clearInterval(intervalId);
+		intervalId = null;
+	}
+
+	initGrid();
+	drawGrid();
+
+	startButton.disabled = false;
+	apply.disabled = false;
+});
+
+apply.addEventListener('click', ()=>{
+	if (isRunning)
+	{
+		alert("Detenga el juego para cambiar la configuración");
+		return;
+	}
+
+	let newSize = size.value.split('x');
+	let newW = parseInt(newSize[0]);
+	let newH = parseInt(newSize[1]);
+
+	let newFps = parseInt(fps.value);
+	if (newFps < 1 || newFps > 30)
+	{
+		alert("FPS debe estar entre 1 y 30");
+		fps.value = Math.max(1, Math.min(30, newFps));
+		return;
+	}
+
+	canvas.width = newW;
+	canvas.height = newH;
+
+	initGrid();
+	drawGrid();
+});
+
+fps.addEventListener('input', () =>{
+    let value = parseInt(fps.value);
+    if (value < 1) fps.value = 1;
+    if (value > 30) fps.value = 30;
+});
+
 /*
 document.addEventListener('keypress', (e) =>{
 	if (e.key == ' ') 
