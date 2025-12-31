@@ -106,5 +106,27 @@ canvas.addEventListener('contextmenu', (e) =>{
 	e.preventDefault();
 });
 
+function countNeighbords(r, c)
+{
+	let total = 0;
+
+	for (let i = -1; i <= 1; i++)
+	{
+		for (let j = -1; j <= 1; j++)
+		{
+			if (!(i == 0 && j == 0))
+			{
+				let newRow = r + i;
+				let newCol = c + j;
+
+				//console.log(`row: ${newRow} col: ${newCol} ESTADO: ${grid[newRow][newCol]}`);
+				if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols)
+					total += grid[newRow][newCol];
+			}
+		}
+	}
+
+	return total;
+}
 initGrid();
 drawGrid();
