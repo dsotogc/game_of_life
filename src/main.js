@@ -128,5 +128,50 @@ function countNeighbords(r, c)
 
 	return total;
 }
+
+function nextGen()
+{
+	let newGrid = [];
+
+	for (let i = 0; i < rows; i++)
+	{
+		newGrid[i] = [];
+		for (let j = 0; j < cols; j++)
+			newGrid[i][j] = 0;
+	}
+
+	for (let x = 0; x < rows; x++)
+	{
+		for (let y = 0; y < cols; y++)
+		{
+			let currentCel = grid[x][y];
+			let neighbords = countNeighbords(x, y);
+
+			if (currentCel == 0)
+			{
+				if (neighbords == 3)
+					newGrid[x][y] = 1;
+			}
+			else
+			{
+				if (neighbords == 2 || neighbords == 3)
+					newGrid[x][y] = 1;
+			}
+		}
+
+	}
+	grid = newGrid;
+	generation++;
+	updateInfo();
+	drawGrid();
+}
+
+/*
+document.addEventListener('keypress', (e) =>{
+	if (e.key == ' ') 
+		nextGen();
+});
+*/
+
 initGrid();
 drawGrid();
