@@ -1,5 +1,43 @@
 const patterns = {
-	none: []
+	none: [],
+	glider: [
+		[0,0,1],
+		[1,0,1],
+		[0,1,1]
+	],
+	blinker: [
+		[1,1,1]
+	],
+	aforall: [
+		[0,0,0,0,1,1,0,0,0,0],
+		[0,0,0,1,0,0,1,0,0,0],
+		[0,0,0,1,1,1,1,0,0,0],
+		[0,1,0,1,0,0,1,0,1,0],
+		[1,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,1],
+		[0,1,0,1,0,0,1,0,1,0],
+		[0,0,0,1,1,1,1,0,0,0],
+		[0,0,0,1,0,0,1,0,0,0],
+		[0,0,0,0,1,1,0,0,0,0]
+	],
+	light_spcs: [
+		[0,1,1,1,1],
+		[1,0,0,0,1],
+		[0,0,0,0,1],
+		[1,0,0,1,0]
+	],
+	beacon: [
+		[1,1,0,0],
+		[1,1,0,0],
+		[0,0,1,1],
+		[0,0,1,1]
+	],
+	toad: [
+		[0,0,1,0],
+		[1,0,0,1],
+		[1,0,0,1],
+		[0,1,0,0]
+	]
 };
 
 const canvas = document.getElementById("canvas");
@@ -102,8 +140,46 @@ canvas.addEventListener('click', (e) =>{
 	}
 });
 
+function insertPattern(r, c, pat)
+{
+	let p_heigth = pat.length;
+	let p_width = pat[0].length;
+
+	let auxr = Math.floor(p_heigth / 2);
+	let auxc = Math.floor(p_width / 2);
+
+	for (let i = 0; i < p_heigth; i++)
+	{
+		for (let j = 0; j < p_width; j++)
+		{
+			let p_row = r - auxr + i;
+			let p_col = c - auxc + j;
+
+			if (p_row >= 0 && p_row < rows && p_col >= 0 && p_col < cols)
+				grid[p_row][p_col] = pat[i][j];
+		}
+	}
+}
+
 canvas.addEventListener('contextmenu', (e) =>{
 	e.preventDefault();
+
+	if (isRunning)
+		return;
+
+	let selectedPattern = pattern.value;
+
+	if (selectedPattern == 'none' || !(patterns[selectedPattern]))
+		return;
+
+	let rect = canvas.getBoundingClientRect();
+	let x = e.clientX - rect.left;
+	let y = e.clientY - rect.top;
+	let col = Math.floor(x / cellSize);
+	let row = Math.floor(y / cellSize);
+
+	insertPattern(row, col, patterns[selectedPattern]);
+	drawGrid();
 });
 
 function countNeighbords(r, c)
