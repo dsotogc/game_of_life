@@ -73,6 +73,7 @@ main {
 
 .main-content {
     display: flex;
+	justify-content: center;
     gap: 2rem;
     max-width: 1400px;
     width: 100%;
