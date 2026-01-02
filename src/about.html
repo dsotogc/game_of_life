@@ -3,11 +3,96 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="src/style.css">
+	<link rel="stylesheet" href="./aboutstyle.css">
 	<link rel="icon" href="../img/healthy-life.png">
 	<title>Info GoL</title>
 </head>
 <body>
-	
+	<header>
+		<h1>Conway's Game of Life</h1>
+        <h4><a href="../index.html">← Volver al juego</a></h4>
+	</header>
+
+	<main>
+		<article class="content-box">
+			<section>
+				<h2>¿Qué es el Juego de la Vida?</h2>
+				<p>
+					El <strong>Juego de la Vida</strong> (Game of Life) es un autómata celular diseñado por el matemático británico 
+					<strong>John Horton Conway</strong> en 1970. No es realmente un "juego" en el sentido tradicional, ya que no 
+					requiere jugadores ni hay forma de "ganar". En su lugar, es un conjunto de reglas que determinan cómo evoluciona 
+					un sistema a lo largo del tiempo.
+				</p>
+				<p>
+					Se desarrolla en una cuadrícula bidimensional infinita de células cuadradas, donde cada célula puede estar en uno 
+					de dos estados: <strong>viva</strong> o <strong>muerta</strong>. A partir de una configuración inicial, el sistema 
+					evoluciona en pasos discretos, generando patrones fascinantes y a menudo impredecibles.
+				</p>
+			</section>
+
+			<section>
+				<h2>Un poco de historia</h2>
+				<p>
+					John Conway desarrolló este autómata celular mientras investigaba problemas relacionados con la teoría de 
+					autómatas presentada por el matemático John von Neumann en la década de 1940. El objetivo de Conway era 
+					simplificar las ideas de von Neumann y crear un sistema que fuera tan simple como fuera posible, pero lo 
+					suficientemente complejo como para generar comportamientos interesantes.
+				</p>
+				<p>
+					El Juego de la Vida fue popularizado en octubre de 1970 a través de la columna "Mathematical Games" de 
+					<strong>Martin Gardner</strong> en la revista <em>Scientific American</em>. Desde entonces, se ha convertido 
+					en uno de los ejemplos más conocidos de emergencia y auto-organización en sistemas complejos, siendo estudiado 
+					en campos como matemáticas, ciencias de la computación, biología y filosofía.
+				</p>
+				<p>
+					Lo fascinante del Juego de la Vida es que, a pesar de sus reglas extremadamente simples, puede producir 
+					comportamientos increíblemente complejos, incluyendo estructuras que se mueven, oscilan, o incluso se 
+					replican a sí mismas.
+				</p>
+			</section>
+
+			<section>
+				<h2>Las Reglas del Juego</h2>
+				<p>
+					El universo del Juego de la Vida es una cuadrícula bidimensional de células. Cada célula interactúa con sus 
+					<strong>ocho vecinos</strong> (horizontal, vertical y diagonalmente adyacentes). En cada paso de tiempo, 
+					ocurren las siguientes transiciones:
+				</p>
+				
+				<div class="rules-box">
+					<div class="rule">
+						<h3>Muerte por aislamiento</h3>
+						<p>Una célula viva con <strong>menos de 2 vecinos vivos</strong> muere (como si muriera por soledad).</p>
+					</div>
+					
+					<div class="rule">
+						<h3>Supervivencia</h3>
+						<p>Una célula viva con <strong>2 o 3 vecinos vivos</strong> sobrevive a la siguiente generación.</p>
+					</div>
+					
+					<div class="rule">
+						<h3>Muerte por sobrepoblación</h3>
+						<p>Una célula viva con <strong>más de 3 vecinos vivos</strong> muere (como si muriera por superpoblación).</p>
+					</div>
+					
+					<div class="rule">
+						<h3>Nacimiento</h3>
+						<p>Una célula muerta con <strong>exactamente 3 vecinos vivos</strong> se convierte en una célula viva (como por reproducción).</p>
+					</div>
+				</div>
+
+				<p class="rule-summary">
+					<strong>Resumen:</strong> Cualquier célula viva con 2 o 3 vecinos sobrevive. Cualquier célula muerta con 
+					exactamente 3 vecinos vivos nace. Todas las demás células vivas mueren, y todas las demás células muertas 
+					permanecen muertas.
+				</p>
+			</section>
+		</article>
+	</main>
+
+	<footer>
+		<p><small>David Soto García - Game of Life</small></p>
+		<a href="https://github.com/dsotogc" target="_blank" rel="noopener noreferrer"><svg width="35px" height="35px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>github dsotogc</title><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399" id="github-[#142]"> </path> </g> </g> </g> </g></svg></a>
+	</footer>	
 </body>
 </html>
